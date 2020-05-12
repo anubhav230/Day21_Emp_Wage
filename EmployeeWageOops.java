@@ -1,13 +1,16 @@
-public class EmployeeWageOops {
+class EmplpyeeSalary {
+	//constant
 	public static final int isFullTime = 0;
-        public static final int isPartTime = 1;
-	public static void main(String[] args) {
-		int empRatePrHr = 20;
+	public static final int isPartTime = 1;
+	public static final int empRatePrHr = 20;
+	public static final int mothWorkingDay = 20;
+	public void empSalary() {
+		//variables
 		int empHr = 0;
 		int perDaySalary = 0;
-		int mothWorkingDay = 20;
 		int monthlySalary = 0;
 		int monthyHrs = 0;
+		//computation
 		for (int i = 1;i <= mothWorkingDay && monthyHrs < 100;i++) {
 			double empCheck = Math.floor(Math.random() * 10) % 2;
 			switch ((int)empCheck)
@@ -31,5 +34,12 @@ public class EmployeeWageOops {
 		}//forloop
 		System.out.println("monthly salary"+monthlySalary);
 
+	}//empSalary()
+}
+public class EmployeeWageOops {
+
+	public static void main(String[] args) {
+		EmplpyeeSalary empWage = new EmplpyeeSalary();
+		empWage.empSalary();
 	}//main()
 }//class
