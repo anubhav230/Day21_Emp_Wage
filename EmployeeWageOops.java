@@ -1,45 +1,43 @@
 class EmplpyeeSalary {
-	//constant
-	public static final int isFullTime = 0;
-	public static final int isPartTime = 1;
-	public static final int empRatePrHr = 20;
-	public static final int mothWorkingDay = 20;
-	public void empSalary() {
-		//variables
-		int empHr = 0;
-		int perDaySalary = 0;
-		int monthlySalary = 0;
-		int monthyHrs = 0;
-		//computation
-		for (int i = 1;i <= mothWorkingDay && monthyHrs < 100;i++) {
-			double empCheck = Math.floor(Math.random() * 10) % 2;
-			switch ((int)empCheck)
-			{
-				case isFullTime :
-					empHr = 8;
-					break;
-				case isPartTime :
-					empHr = 4;
-					break;
+        //constant
+        public static final int IS_FULL_TIME = 1;
+        public static final int IS_PART_TIME = 2;
 
-			}//switch
-			monthyHrs = monthyHrs + empHr;
-			System.out.println("working days : "+i);
-			System.out.println("monthyHrs wis : "+monthyHrs);
-			perDaySalary = empRatePrHr * empHr;
-			System.out.println(perDaySalary);
-			monthlySalary = perDaySalary + monthlySalary;
+        public void empSalary(String company, int empRatePerHr, int numberOfWorkingDays, int maxHrPerMonth ) {
+                //variables
 
+				int empHrs = 0;
+				int totalEmpHrs = 0;
+				int totalWorkingDays = 0;
+				while (totalEmpHrs <= maxHrPerMonth && totalWorkingDays < numberOfWorkingDays) {
+					totalWorkingDays++;
+					double empCheck = Math.floor(Math.random() * 10) % 3;
+					switch ((int)empCheck)
+                        {
+                                case IS_FULL_TIME :
+                                        empHrs = 8;
+                                        break;
+                                case IS_PART_TIME :
+                                        empHrs = 4;
+                                        break;
+                                default :
+                                        empHrs = 0;
 
-		}//forloop
-		System.out.println("monthly salary"+monthlySalary);
+                        }//switch
+						totalEmpHrs += empHrs;
+						System.out.println(totalWorkingDays+" "+totalEmpHrs);
+				}//while
 
-	}//empSalary()
+                        int totalEmpWage = totalEmpHrs * empRatePerHr;
+                        System.out.println(company+" "+totalEmpWage);
+
+        }//empSalary()
 }
 public class EmployeeWageOops {
 
-	public static void main(String[] args) {
-		EmplpyeeSalary empWage = new EmplpyeeSalary();
-		empWage.empSalary();
-	}//main()
-}//class
+        public static void main(String[] args) {
+                EmplpyeeSalary empWage = new EmplpyeeSalary();
+                empWage.empSalary("DMart", 20, 20, 100);
+				empWage.empSalary("icici", 50, 20, 100);
+        }//main()
+}//mainclass
