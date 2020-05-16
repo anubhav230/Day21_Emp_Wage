@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+interface InEmployeeWageOops {
+        public void addCompanyEmpWage(String company, int empRatePerHr, int numberOfWorkingDays, int maxHrPerMonth);
+        public void computeEmpWage();
+
+}//InEmployeeWageOops  interface
+
+
 class CompanyEmpWage {
 	public final String company;
 	public final int empRatePerHr;
@@ -22,7 +29,7 @@ class CompanyEmpWage {
 	}
 }//ComanyEmpWage class
 
-class EmployeeWageOops {
+class EmployeeWageOops implements InEmployeeWageOops {
         //constant
         public static final int IS_FULL_TIME = 1;
         public static final int IS_PART_TIME = 2;
@@ -38,7 +45,7 @@ class EmployeeWageOops {
 	public void dailyWage(){
 		dailyWage.add(daySalary);
 	}
-	private void addCompanyEmpWage(String company, int empRatePerHr, int numberOfWorkingDays, int maxHrPerMonth) {
+	public void addCompanyEmpWage(String company, int empRatePerHr, int numberOfWorkingDays, int maxHrPerMonth) {
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHr, numberOfWorkingDays, maxHrPerMonth);
 		companyEmpWageArrayList.add(companyEmpWage);
 		companyEmpWageMap.put(company, companyEmpWage);
@@ -47,7 +54,7 @@ class EmployeeWageOops {
 
 
 	}
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i=0; i<companyEmpWageArrayList.size(); i++) {
 			CompanyEmpWage companyEmpWage = companyEmpWageArrayList.get(i);
 			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
