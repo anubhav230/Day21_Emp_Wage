@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 class CompanyEmpWage {
 	public final String company;
 	public final int empRatePerHr;
@@ -19,7 +20,7 @@ class CompanyEmpWage {
 	public String toString() {
 			return "Total employee wage for: " +company+ " is " +totalEmpWage;
 	}
-}
+}//ComanyEmpWage class
 
 class EmployeeWageOops {
         //constant
@@ -29,9 +30,10 @@ class EmployeeWageOops {
 	private int numOfCompany = 0;
 	ArrayList<Integer> dailyWage=new ArrayList<Integer>();
 	private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
+	private HashMap<String,CompanyEmpWage> companyEmpWageMap;
 	public EmployeeWageOops() {
 		companyEmpWageArrayList = new ArrayList<>();
-
+		companyEmpWageMap= new HashMap<>();
 	}
 	public void dailyWage(){
 		dailyWage.add(daySalary);
@@ -39,6 +41,8 @@ class EmployeeWageOops {
 	private void addCompanyEmpWage(String company, int empRatePerHr, int numberOfWorkingDays, int maxHrPerMonth) {
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHr, numberOfWorkingDays, maxHrPerMonth);
 		companyEmpWageArrayList.add(companyEmpWage);
+		companyEmpWageMap.put(company, companyEmpWage);
+
 		//numOfCompany++;
 
 
@@ -52,11 +56,9 @@ class EmployeeWageOops {
 	}
        	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
                 //variables
-
 		int empHrs = 0;
 		int totalEmpHrs = 0;
 		int totalWorkingDays = 0;
-		//int totalEmpWage = 0;
 
 		//computation
 		while (totalEmpHrs <= companyEmpWage.maxHrPerMonth && totalWorkingDays < companyEmpWage.numberOfWorkingDays) {
@@ -87,6 +89,9 @@ class EmployeeWageOops {
 		//public String toString() {
 		//	return "Total employee wage for: " +company+ "is " +totalEmpWage;
 		//}
+		public int getTotalEmpWage(String company) {
+			return companyEmpWageMap.get(company).totalEmpWage;
+		}
 
 
         public static void main(String[] args) {
@@ -97,5 +102,6 @@ class EmployeeWageOops {
 		empWageBuilder.addCompanyEmpWage("IBM", 100, 8, 100);
 		empWageBuilder.addCompanyEmpWage("google", 100, 10, 100);
 		empWageBuilder.computeEmpWage();
+		System.out.println("Total wage of queried company: "+empWageBuilder.getTotalEmpWage("accenture"));
         }//main()
 }//class
